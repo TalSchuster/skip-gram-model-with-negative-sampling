@@ -76,11 +76,10 @@ def test_softmax():
     """
     print "Running your tests..."
     ### YOUR CODE HERE
-    return
     raise NotImplementedError
     ### END YOUR CODE
 
 
 if __name__ == "__main__":
     test_softmax_basic()
-    test_softmax()
+    #test_softmax()
