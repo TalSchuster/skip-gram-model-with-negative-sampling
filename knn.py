@@ -14,10 +14,15 @@ def knn(vector, matrix, k=10):
     """
 
     nearest_idx = []
-
-    ### YOUR CODE HERE
-    raise NotImplementedError
-    ### END YOUR CODE
+    
+    matNorm = np.linalg.norm(matrix, axis=1)
+    vecNorm = np.linalg.norm(vector)
+    dist = np.dot(matrix, vector) / (matNorm*vecNorm)
+    
+    # Reverse order for cosine similarity
+    order = dist.argsort()[::-1] 
+    nearest_idx = order[:k]    
+    
     return nearest_idx
 
 def test_knn():
@@ -28,9 +33,19 @@ def test_knn():
     your tests be graded.
     """
     print "Running your tests..."
-    ### YOUR CODE HERE
-    raise NotImplementedError
-    ### END YOUR CODE
+    mat = np.array([[2, 3.5], [0, 1], [2, 3] ])
+    vec = np.array([2,3])
+    ans = knn(vec, mat, 2)
+    assert 0 in ans
+    assert 1 not in ans
+    assert 2 in ans
+    
+    mat = np.array([[2, 3.5], [0, 1], [2, 3] ])
+    vec = np.array([0,0.95])
+    ans = knn(vec, mat, 1)
+    assert 0 not in ans
+    assert 1 in ans
+    assert 2 not in ans
 
 if __name__ == "__main__":
     test_knn()
